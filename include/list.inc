@@ -5,10 +5,12 @@
 
     #include <memory>
 
-    #define LIST_NULL                   List:MEM_NULLPTR
-    #define LIST_IT_NULL                ListIt:MEM_NULLPTR
-    #define LIST_foreach%2(%0:%1)       for (new Pointer:%0, ListIt:__lit__ = LIST_iter_begin(%1, %0); __lit__ != LIST_IT_NULL; __lit__ = LIST_iter_next(__lit__, %0))
-    #define LIST_foreach_rev%2(%0:%1)   for (new Pointer:%0, ListIt:__lit__ = LIST_iter_end(%1, %0); __lit__ != LIST_IT_NULL; __lit__ = LIST_iter_previous(__lit__, %0))
+    #define LIST_NULL                       List:MEM_NULLPTR
+    #define LIST_IT_NULL                    ListIt:MEM_NULLPTR
+    #define LIST_foreach%2(%0:%1)           LIST_foreach_ex(%0,__lit__:%1)
+    #define LIST_foreach_rev%2(%0:%1)       LIST_foreach_rev_ex(%0,__lit__:%1)
+    #define LIST_foreach_ex%3(%0,%1:%2)     for (new Pointer:%0, ListIt:%1 = LIST_iter_begin(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_next(%1, %0))
+    #define LIST_foreach_rev_ex%3(%0,%1:%2) for (new Pointer:%0, ListIt:%1 = LIST_iter_end(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_previous(%1, %0))
 
 // List structure
 MEM_struct LIST_struct
@@ -301,6 +303,50 @@ stock ListIt:LIST_push_front_arr(&List:list, const value[], value_size = sizeof 
 stock ListIt:LIST_push_front_str(&List:list, const value[])
 {
     return LIST_push_front_arr(list, value, strlen(value) + 1);
+}
+
+// List pop back
+stock LIST_pop_back(&List:list)
+{
+    if (list != LIST_NULL)
+    {
+        new l[LIST_struct], lit[LIST_iter_struct];
+        MEM_get_arr(Pointer:list, _, l);
+        MEM_get_arr(Pointer:l[LIST_struct_end], _, lit);
+        if (lit[LIST_iter_struct_previous] == LIST_IT_NULL)
+        {
+            MEM_delete(Pointer:list);
+            list = LIST_NULL;
+        }
+        else
+        {
+            MEM_set_val(Pointer:lit[LIST_iter_struct_previous], LIST_iter_struct_next, _:LIST_IT_NULL);
+            MEM_set_val(Pointer:list, LIST_struct_end, _:lit[LIST_iter_struct_previous]);
+        }
+        MEM_delete(Pointer:l[LIST_struct_end]);
+    }
+}
+
+// List pop front
+stock LIST_pop_front(&List:list)
+{
+    if (list != LIST_NULL)
+    {
+        new l[LIST_struct], lit[LIST_iter_struct];
+        MEM_get_arr(Pointer:list, _, l);
+        MEM_get_arr(Pointer:l[LIST_struct_begin], _, lit);
+        if (lit[LIST_iter_struct_next] == LIST_IT_NULL)
+        {
+            MEM_delete(Pointer:list);
+            list = LIST_NULL;
+        }
+        else
+        {
+            MEM_set_val(Pointer:lit[LIST_iter_struct_next], LIST_iter_struct_previous, _:LIST_IT_NULL);
+            MEM_set_val(Pointer:list, LIST_struct_begin, _:lit[LIST_iter_struct_next]);
+        }
+        MEM_delete(Pointer:l[LIST_struct_begin]);
+    }
 }
 
 // List remove (value)
