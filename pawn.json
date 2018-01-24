@@ -1,0 +1,10 @@
+{
+	"user": "BigETI",
+	"repo": "pawn-list",
+	"entry": "test/listtest.pwn",
+	"output": "test/listtest.amx",
+	"dependencies": [
+		"sampctl/pawn-stdlib",
+		"BigETI/pawn-memory/include"
+	]
+}
