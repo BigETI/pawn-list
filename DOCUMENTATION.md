@@ -1,3 +1,4 @@
+
 # Linked list implementation in PAWN
 
 ## Important
@@ -370,7 +371,7 @@ new List:list;
 LIST_push_back_val(list, 1);
 LIST_push_back_val(list, 2);
 LIST_push_back_val(list, 3);
-LIST_foreach(v : map)
+LIST_foreach(v : list)
 {
 	printf("0x%x, %d, \"%d\"", _:v, MEM_get_size(v), MEM_get_val(v, _));
 }
@@ -381,11 +382,11 @@ new List:list, arr1[10] = { 100, ... }, arr2[20] = { 200, ... }, arr3[30] = { 30
 LIST_push_back_arr(list, arr1);
 LIST_push_back_arr(list, arr2);
 LIST_push_back_arr(list, arr3);
-LIST_foreach(v : map)
+LIST_foreach(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d", _:v, v_sz);
 	print("\tValue:");
@@ -398,14 +399,14 @@ LIST_foreach(v : map)
 or
 ```C
 new List:list, value[16], m_v_sz, v_sz;
-LIST_push_back_str(map, "This is a test);
-LIST_push_back_str(map, "foo");
-LIST_push_back_str(map, "bar");
+LIST_push_back_str(list, "This is a test");
+LIST_push_back_str(list, "foo");
+LIST_push_back_str(list, "bar");
 LIST_foreach(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d, \"%s\"", _:v, v_sz, value);
 }
@@ -424,7 +425,7 @@ new List:list;
 LIST_push_back_val(list, 1);
 LIST_push_back_val(list, 2);
 LIST_push_back_val(list, 3);
-LIST_foreach_rev(v : map)
+LIST_foreach_rev(v : list)
 {
 	printf("0x%x, %d, \"%d\"", _:v, MEM_get_size(v), MEM_get_val(v, _));
 }
@@ -435,11 +436,11 @@ new List:list, arr1[10] = { 100, ... }, arr2[20] = { 200, ... }, arr3[30] = { 30
 LIST_push_back_arr(list, arr1);
 LIST_push_back_arr(list, arr2);
 LIST_push_back_arr(list, arr3);
-LIST_foreach_rev(v : map)
+LIST_foreach_rev(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d", _:v, v_sz);
 	print("\tValue:");
@@ -452,14 +453,14 @@ LIST_foreach_rev(v : map)
 or
 ```C
 new List:list, value[16], m_v_sz, v_sz;
-LIST_push_back_str(map, "This is a test);
-LIST_push_back_str(map, "foo");
-LIST_push_back_str(map, "bar");
+LIST_push_back_str(list, "This is a test");
+LIST_push_back_str(list, "foo");
+LIST_push_back_str(list, "bar");
 LIST_foreach_rev(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d, \"%s\"", _:v, v_sz, value);
 }
@@ -493,7 +494,7 @@ LIST_foreach_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d", _:v, _:it, v_sz);
 	print("\tValue:");
@@ -506,14 +507,14 @@ LIST_foreach_ex(v, it : list)
 or
 ```C
 new List:list, value[16], m_v_sz, v_sz;
-LIST_push_back_str(map, "This is a test);
-LIST_push_back_str(map, "foo");
-LIST_push_back_str(map, "bar");
+LIST_push_back_str(list, "This is a test");
+LIST_push_back_str(list, "foo");
+LIST_push_back_str(list, "bar");
 LIST_foreach_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d, \"%s\"", _:v, _:it, v_sz, value);
 }
@@ -524,7 +525,7 @@ LIST_foreach_ex(v, it : list)
 Method to traverse through a list in reverse
 #### Syntax
 ```C
-MAP_foreach_rev(Pointer:value, ListIt:iterator : List:list)
+LIST_foreach_rev(Pointer:value, ListIt:iterator : List:list)
 ```
 #### Example
 ```C
@@ -532,7 +533,7 @@ new List:list;
 LIST_push_back_val(list, 1);
 LIST_push_back_val(list, 2);
 LIST_push_back_val(list, 3);
-LIST_foreach_rev_ex(v, it : map)
+LIST_foreach_rev_ex(v, it : list)
 {
 	printf("0x%x, 0x%x, %d, \"%d\"", _:v, _:it, MEM_get_size(v), MEM_get_val(v, _));
 }
@@ -543,11 +544,11 @@ new List:list, arr1[10] = { 100, ... }, arr2[20] = { 200, ... }, arr3[30] = { 30
 LIST_push_back_arr(list, arr1);
 LIST_push_back_arr(list, arr2);
 LIST_push_back_arr(list, arr3);
-LIST_foreach_rev_ex(v, it : map)
+LIST_foreach_rev_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d", _:v, _:it, v_sz);
 	print("\tValue:");
@@ -560,14 +561,14 @@ LIST_foreach_rev_ex(v, it : map)
 or
 ```C
 new List:list, value[16], m_v_sz, v_sz;
-LIST_push_back_str(map, "This is a test);
-LIST_push_back_str(map, "foo");
-LIST_push_back_str(map, "bar");
+LIST_push_back_str(list, "This is a test");
+LIST_push_back_str(list, "foo");
+LIST_push_back_str(list, "bar");
 LIST_foreach_rev_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_get_addr(value[0]), sizeof value);
+	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d, \"%s\"", _:v, _:it, v_sz, value);
 }
