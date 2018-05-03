@@ -1,6 +1,6 @@
 # Linked list implementation in PAWN
 
-![sampctl package](https://shields.southcla.ws/badge/sampctl-pawn--list-2f2f2f.svg?style=for-the-badge)(https://github.com/BigETI/pawn-list "pawn-list")
+[![sampctl package](https://shields.southcla.ws/badge/sampctl-pawn--list-2f2f2f.svg?style=for-the-badge)](https://github.com/BigETI/pawn-list "pawn-list")
 
 ## Description
 This is a linked list implementation in PAWN.
