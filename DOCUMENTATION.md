@@ -386,7 +386,7 @@ LIST_foreach(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d", _:v, v_sz);
 	print("\tValue:");
@@ -406,7 +406,7 @@ LIST_foreach(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d, \"%s\"", _:v, v_sz, value);
 }
@@ -440,7 +440,7 @@ LIST_foreach_rev(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d", _:v, v_sz);
 	print("\tValue:");
@@ -460,7 +460,7 @@ LIST_foreach_rev(v : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, %d, \"%s\"", _:v, v_sz, value);
 }
@@ -494,7 +494,7 @@ LIST_foreach_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d", _:v, _:it, v_sz);
 	print("\tValue:");
@@ -514,7 +514,7 @@ LIST_foreach_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d, \"%s\"", _:v, _:it, v_sz, value);
 }
@@ -548,7 +548,7 @@ LIST_foreach_rev_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d", _:v, _:it, v_sz);
 	print("\tValue:");
@@ -568,7 +568,7 @@ LIST_foreach_rev_ex(v, it : list)
 {
 	v_sz = MEM_get_size(v);
 	m_v_sz = ((v_sz < sizeof value) ? v_sz : sizeof value);
-	MEM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
+	MEM_UM_zero(UnmanagedPointer:MEM_UM_get_addr(value[0]), sizeof value);
 	MEM_get_arr(v, _, value, m_v_sz);
 	printf("0x%x, 0x%x, %d, \"%s\"", _:v, _:it, v_sz, value);
 }
