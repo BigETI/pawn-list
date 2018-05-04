@@ -4,6 +4,7 @@
 
 ## Description
 This is a linked list implementation in PAWN.
+Detailed documentation can be checked out at the [wiki](https://github.com/BigETI/pawn-memory/wiki).
 
 ## Installation
 ### Using sampctl
@@ -30,10 +31,10 @@ sampctl package install BigETI/pawn-list
 - https://github.com/sampctl/pawn-stdlib
 
 ## Documentation
-You can find the [documentation](https://github.com/BigETI/pawn-list/blob/master/DOCUMENTATION.md) here: https://github.com/BigETI/pawn-list/blob/master/DOCUMENTATION.md
+You can find the [documentation](https://github.com/BigETI/pawn-memory/wiki) here: https://github.com/BigETI/pawn-memory/wiki
 
 ## Licence
 You can find the [licence](https://github.com/BigETI/pawn-list/blob/master/LICENCE.md) here: https://github.com/BigETI/pawn-list/blob/master/LICENCE.md
 
-## How do I contribute?
-Just create a fork from this project, make your changes and create a pull request.
+## How to contribute to this project?
+Just create a fork out of this project, make your changes and create a pull request.
