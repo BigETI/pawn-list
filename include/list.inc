@@ -4,6 +4,7 @@
     #define __LIST_INCLUDED__
 
     #include <memory>
+	#include <string>
 
     #define LIST_NULL                       List:MEM_NULLPTR
     #define LIST_IT_NULL                    ListIt:MEM_NULLPTR
