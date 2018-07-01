@@ -8,10 +8,11 @@
 
     #define LIST_NULL                       List:MEM_NULLPTR
     #define LIST_IT_NULL                    ListIt:MEM_NULLPTR
-    #define LIST_foreach%2(%0:%1)           LIST_foreach_ex(%0,__lit__:%1)
-    #define LIST_foreach_rev%2(%0:%1)       LIST_foreach_rev_ex(%0,__lit__:%1)
-    #define LIST_foreach_ex%3(%0,%1:%2)     for (new Pointer:%0, ListIt:%1 = LIST_iter_begin(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_next(%1, %0))
-    #define LIST_foreach_rev_ex%3(%0,%1:%2) for (new Pointer:%0, ListIt:%1 = LIST_iter_end(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_previous(%1, %0))
+    #define LIST_foreach%2(%0:%1)           LIST_foreach_ex%2(%0,__lit__%0:%1)
+    #define LIST_foreach_rev%2(%0:%1)       LIST_foreach_rev_ex%2(%0,__lit__%0:%1)
+    #define LIST_foreach_ex%3(%0,%1:%2)     for%3(new Pointer:%0, ListIt:%1 = LIST_iter_begin(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_next(%1, %0))
+    #define LIST_foreach_rev_ex%3(%0,%1:%2) for%3(new Pointer:%0, ListIt:%1 = LIST_iter_end(%2, %0); %1 != LIST_IT_NULL; %1 = LIST_iter_previous(%1, %0))
+    #define __lit__%0\32;                   __lit__
 
 // List structure
 MEM_struct LIST_struct

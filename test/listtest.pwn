@@ -50,10 +50,70 @@ PrintListReverse(List:list)
     }
 }
 
-// On filter script init
-public OnFilterScriptInit()
+// Print lists in list
+PrintListsInList(List:list)
 {
-    new List:list, size, arr[10] = { 100, ... }, arr2[10] = { 200, ... };
+    new vx_sz, vy_sz, i, List:l;
+    printf("[LISTTEST] List (0x%x):", _:list);
+    LIST_foreach(vx : list)
+    {
+        vx_sz = MEM_get_size(vx);
+        if (vx_sz == 1)
+        {
+            l = List:MEM_get_val(vx, 0);
+            if (l != LIST_NULL)
+            {
+                if (MEM_get_size(Pointer:l) == LIST_struct)
+                {
+                    printf("\t[LISTTEST] List (0x%x):", _:l);
+                    LIST_foreach(vy : l)
+                    {
+                        vy_sz = MEM_get_size(vy);
+                        printf("\t\tValue pointer: 0x%x; Value size: %d:", _:vy, vy_sz);
+                        for (i = 0; i < vy_sz; i++)
+                        {
+                            printf("\t\t\t%d => %d", i, MEM_get_val(vy, i));
+                        }
+                    }
+                }
+                else
+                {
+                    printf("\tValue pointer: 0x%x; Value size: %d:", _:vx, vx_sz);
+                    for (i = 0; i < vx_sz; i++)
+                    {
+                        printf("\t\t%d => %d", i, MEM_get_val(vx, i));
+                    }
+                }
+            }
+            else
+            {
+                printf("\tValue pointer: 0x%x; Value size: %d:", _:vx, vx_sz);
+                for (i = 0; i < vx_sz; i++)
+                {
+                    printf("\t\t%d => %d", i, MEM_get_val(vx, i));
+                }
+            }
+        }
+        else
+        {
+            printf("\tValue pointer: 0x%x; Value size: %d:", _:vx, vx_sz);
+            for (i = 0; i < vx_sz; i++)
+            {
+                printf("\t\t%d => %d", i, MEM_get_val(vx, i));
+            }
+        }
+    }
+}
+
+// Entry point
+main()
+{
+    new List:list, List:list_a, List:list_b, size, arr[10] = { 100, ... }, arr2[10] = { 200, ... };
+    print("\r\n==========================");
+    print("= List unit test =");
+    print("= Made by BigETI =");
+    print("= Loaded!        =");
+    print("==========================\r\n");
     print("[LISTTEST] Test 1");
     size = LIST_count(list);
     assertf(size == 0, "[LISTTEST] List (0x%x) size is %d, instead of 0.", _:list, size);
@@ -102,22 +162,32 @@ public OnFilterScriptInit()
     LIST_clear(list);
     size = LIST_count(list);
     assertf(size == 0, "[LISTTEST] List (0x%x) size is %d, instead of 0.", _:list, size);
+    print("[LISTTEST] Test 4");
+    LIST_push_back_val(list_a, 1);
+    LIST_push_back_val(list_a, 2);
+    LIST_push_back_val(list_a, 3);
+    LIST_push_back_val(list_b, 4);
+    LIST_push_back_val(list_b, 5);
+    LIST_push_back_val(list_b, 6);
+    LIST_push_back_val(list, _:list_a);
+    LIST_push_back_val(list, _:list_b);
+    PrintListsInList(list);
+    size = LIST_count(list);
+    assertf(size == 2, "[LISTTEST] List (0x%x) size is %d, instead of 2.", _:list, size);
+    size = LIST_count(list_a);
+    assertf(size == 3, "[LISTTEST] List a (0x%x) size is %d, instead of 3.", _:list_a, size);
+    size = LIST_count(list_b);
+    assertf(size == 3, "[LISTTEST] List b (0x%x) size is %d, instead of 3.", _:list_b, size);
+    LIST_clear(list_a);
+    LIST_clear(list_b);
+    LIST_clear(list);
+    print("[LISTTEST] Test 5");
+    size = LIST_count(list);
+    assertf(size == 0, "[LISTTEST] List (0x%x) size is %d, instead of 0.", _:list, size);
+    size = LIST_count(list_a);
+    assertf(size == 0, "[LISTTEST] List a (0x%x) size is %d, instead of 0.", _:list_a, size);
+    size = LIST_count(list_b);
+    assertf(size == 0, "[LISTTEST] List b (0x%x) size is %d, instead of 0.", _:list_b, size);
     print("[LISTTEST] Test completed.");
-    print("\r\n==========================");
-    print("= List test filterscript =");
-    print("=         Made by BigETI =");
-    print("= Loaded!                =");
-    print("==========================\r\n");
-    return 1;
-}
-
-// On filter script exit
-public OnFilterScriptExit()
-{
-    print("\r\n==========================");
-    print("= List test filterscript =");
-    print("=         Made by BigETI =");
-    print("= Unloaded!              =");
-    print("==========================\r\n");
     return 1;
 }
