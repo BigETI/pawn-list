@@ -1,10 +1,14 @@
 {
-	"user": "BigETI",
-	"repo": "pawn-list",
-	"entry": "test/listtest.pwn",
-	"output": "test/listtest.amx",
-	"dependencies": [
-		"sampctl/pawn-stdlib",
-		"BigETI/pawn-memory/include"
-	]
+    "user": "BigETI",
+    "repo": "pawn-list",
+    "entry": "test/listtest.pwn",
+    "output": "test/listtest.amx",
+    "include_path": "include",
+    "dependencies": ["sampctl/samp-stdlib", "BigETI/pawn-memory:2.0.1"],
+    "builds": [
+        {
+            "name": "test",
+            "includes": ["./include"]
+        }
+    ]
 }
